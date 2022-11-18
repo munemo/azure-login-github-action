@@ -1,24 +1,18 @@
-
-# File: .github/workflows/workflow.yml
-
-on: [push]
-
-name: AzureLoginSample
+name: auzure-deployment
+on:
+  push:
+    branches: [ main ]
 
 jobs:
 
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  buildandpush:
+    runs-on: [self-hosted, linux]
     env: 
       credentials: ${{ secrets.AZURE_CREDENTIALS }}
       AZURE_CLIENT_ID: ${{ fromJSON(secrets.AZURE_CREDENTIALS)['clientId'] }}
       AZURE_CLIENT_SECRET: ${{ fromJSON(secrets.AZURE_CREDENTIALS)['clientSecret'] }}
       AZURE_TENANT_ID: ${{ fromJSON(secrets.AZURE_CREDENTIALS)['tenantId'] }}
-    
     steps:
-    
-
-    
     - uses: azure/CLI@v1
       with:
         azcliversion: 2.0.72
