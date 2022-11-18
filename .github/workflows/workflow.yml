@@ -9,11 +9,20 @@ jobs:
 
   build-and-deploy:
     runs-on: ubuntu-latest
+    env: 
+      credentials: ${{ secrets.AZURE_CREDENTIALS }}
+      AZURE_CLIENT_ID: ${{ fromJSON(secrets.AZURE_CREDENTIALS)['clientId'] }}
+      AZURE_CLIENT_SECRET: ${{ fromJSON(secrets.AZURE_CREDENTIALS)['clientSecret'] }}
+      AZURE_TENANT_ID: ${{ fromJSON(secrets.AZURE_CREDENTIALS)['tenantId'] }}
+    
     steps:
     
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
     
-    - run: |
-        az webapp list --query "[?state=='Running']"
+    - uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+          az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+          az account list
+
