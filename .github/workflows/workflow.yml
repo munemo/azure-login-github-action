@@ -1,22 +1,21 @@
-name: auzure-deployment
-on:
-  push:
-    branches: [ main ]
+
+# File: .github/workflows/workflow.yml
+
+on: [push]
+
+name: AzureLoginSample
 
 jobs:
 
-  buildandpush:
-    runs-on: [self-hosted, linux]
-    env: 
-      credentials: ${{ secrets.AZURE_CREDENTIALS }}
-      AZURE_CLIENT_ID: ${{ fromJSON(secrets.AZURE_CREDENTIALS)['clientId'] }}
-      AZURE_CLIENT_SECRET: ${{ fromJSON(secrets.AZURE_CREDENTIALS)['clientSecret'] }}
-      AZURE_TENANT_ID: ${{ fromJSON(secrets.AZURE_CREDENTIALS)['tenantId'] }}
+  build-and-deploy:
+    runs-on: ubuntu-latest
     steps:
-    - uses: azure/CLI@v1
+    
+    - uses: azure/actions/login@v1
       with:
-        azcliversion: 2.0.72
-        inlineScript: |
-          az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
-          az account list
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - run: |
+        az webapp list --query "[?state=='Running']"
 
+  
