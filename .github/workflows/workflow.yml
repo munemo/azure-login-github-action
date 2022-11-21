@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run build script
-        run: ./build.sh
+        run: sh ./build.sh
         shell: bash
     
