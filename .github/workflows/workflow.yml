@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: azure/login@v1.1
+    - uses: azure/login@v1
       env: 
        CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       
       with:
-        creds: ${{ env.AZURE_CREDENTIALS }}
+        creds: $CREDENTIALS
