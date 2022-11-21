@@ -8,6 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run build script
-        run: sh ./build.sh
-        shell: bash
+        run: sh ./github-actions.sh
     
