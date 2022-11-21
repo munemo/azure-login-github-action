@@ -11,5 +11,8 @@ jobs:
     steps:
 
     - uses: azure/login@v1.1
+      env: 
+       CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+      
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ env.AZURE_CREDENTIALS }}
