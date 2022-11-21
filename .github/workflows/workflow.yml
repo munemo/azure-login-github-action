@@ -7,8 +7,8 @@ jobs:
   build-and-deploy:
     runs-on: windows-latest
     steps:
-
-    - name: Run a script file from my repo
+    - name: echo "This is running a script"
+      uses: actions/checkout@v2.4.0
     - run: sh ./github-actions.sh
       shell: pwsh
       
