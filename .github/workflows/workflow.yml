@@ -5,11 +5,11 @@ name: AzureCLISample
 jobs:
 
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
 
     - name: Run a script file from my repo
     - run: sh ./github-actions.sh
-      shell: bash
+      shell: pwsh
       
     
