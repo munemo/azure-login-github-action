@@ -7,6 +7,9 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Run build script
-        run: sh github-actions.sh
+
+    - name: Run a script file from my repo
+    - run: sh ./github-actions.sh
+      shell: bash
+      
     

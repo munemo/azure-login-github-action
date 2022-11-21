@@ -1,1 +1,1 @@
-echo "Hello John"
+az login --service-principal -u c57a8915-eb12-4d52-bf8e-e71aa280c79a -p 0q28Q~gvZDfDT3vbJzCy5qD.9wAwggkZbQGLndxf --tenant 7bb1a8e5-59ee-489d-86f5-a50210ae3970
