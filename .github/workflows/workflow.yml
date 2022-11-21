@@ -1,15 +1,19 @@
+
+# File: .github/workflows/workflow.yml
+
 on: [push]
 
-name: AzureCLISample
+name: AzureLoginSample
 
 jobs:
 
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-    - name: echo "This is running a script"
-      uses: actions/checkout@v2.4.0
-    - run: sh ./github-actions.sh
-      shell: pwsh
-      
     
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - run: |
+        az webapp list --query "[?state=='Running']"
