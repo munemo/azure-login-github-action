@@ -2,7 +2,7 @@
 
 on: [push]
 
-name: AzureLoginWithNoSubscriptions
+name: Azure Login
 
 jobs:
 
@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: azure/login@v1
+    - uses: azure/login@v1.4.6
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        allow-no-subscriptions: true
