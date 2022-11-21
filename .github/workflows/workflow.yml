@@ -15,4 +15,4 @@ jobs:
        CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       
       with:
-        creds: $CREDENTIALS
+        creds: ${{ env.CREDENTIALS }}
